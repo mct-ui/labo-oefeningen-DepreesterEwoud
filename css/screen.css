@@ -165,6 +165,26 @@ hr {
     background: LightGrey;
     margin: 0 0 24px;
 }
+figure {
+    position: relative;
+    float: left;
+  }
+
+  figcaption {
+    background-color: white;
+    color: black;
+    max-width: 200px;
+    font-size: 10px;
+    display: block;
+
+    position: absolute;
+    top: 4px;
+    right:8px;
+    padding:10px;
+    border-right:4px solid #0053FB;
+    line-height: 16px;
+    text-align: right;
+  } 
 
 a {
     color: #1195F7;
@@ -481,7 +501,52 @@ a:focus {
     text-shadow: 0px 0px 10px #DBEDFF;
 }
 
+.c-link-cta { 
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color:white !important;
+    line-height: 16px;
+    font-weight: 400;
+    border:1px solid rgb(61, 133, 205);
+    padding: 20px 40px 20px 40px;
+    background-image: linear-gradient(to right ,#033AA7, #0053FB);
+    box-shadow: 0px 0px 3px rgb(103, 172, 240);
+  }
 
+
+
+
+/* .c-link-cta::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #7373F5;
+    transform: scaleX(.5);
+    transform-origin: left;
+    transition-property: transform background-color;
+    transition-duration: .175s;
+    transition-timing-function: ease-in;
+} */
+
+
+
+/* .c-link-cta--inverse {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 4px 0;
+    transition: color .175s ease-in;
+} */
 /*------------------------------------*\
   #UTILITIES
 \*------------------------------------*/
