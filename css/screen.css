@@ -1,23 +1,25 @@
 /*------------------------------------*\
   #FONTS
 \*------------------------------------*/
+
 @font-face {
-    font-family: "Clear Sans";
+    font-family: "Clear Sans Web";
     font-weight: 200;
-    src: url("../fonts/ClearSans-Light-webfont.woff");
+    src: url("../fonts/ClearSans-Light-webfont.woff") format("woff");
 }
 
 @font-face {
-    font-family: "Clear Sans";
+    font-family: "Clear Sans Web";
     font-weight: 400;
-    src: url("../fonts/ClearSans-Medium-webfont.woff");
+    src: url("../fonts/ClearSans-Regular-webfont.woff") format("woff");
 }
 
 @font-face {
-    font-family: "Clear Sans";
+    font-family: "Clear Sans Web";
     font-weight: 600;
-    src: url("../fonts/ClearSans-Regular-webfont.woff");
+    src: url("../fonts/ClearSans-Medium-webfont.woff") format("woff");
 }
+
 /*------------------------------------*\
   #GENERIC
 \*------------------------------------*/
@@ -31,15 +33,14 @@
 html {
     font-size: 18px;
     line-height: 32px;
+    font-family: "Clear Sans Web", Helvetica, arial, sans-serif;
     font-weight: 200;
-    color: white;
-    font-family: "Clear Sans", Helvetica, arial, sans-serif;
+    color: #fff;
+    background: linear-gradient(to bottom right, #0A257D, #061649);
+    background-attachment: fixed;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 100%;
-    background-image: linear-gradient(#0A257D, #061649);
-    background-attachment: fixed;
 }
 
 *,
@@ -165,26 +166,6 @@ hr {
     background: LightGrey;
     margin: 0 0 24px;
 }
-figure {
-    position: relative;
-    float: left;
-  }
-
-  figcaption {
-    background-color: white;
-    color: black;
-    max-width: 200px;
-    font-size: 10px;
-    display: block;
-
-    position: absolute;
-    top: 4px;
-    right:8px;
-    padding:10px;
-    border-right:4px solid #0053FB;
-    line-height: 16px;
-    text-align: right;
-  } 
 
 a {
     color: #1195F7;
@@ -209,15 +190,21 @@ a:focus {
 */
 
 .o-row {
+    display: flow-root; /* New solution! Fixes margin collapsing */
     position: relative;
     padding: 24px 24px 0;
-    display: flow-root;
 }
 
 /* size modifiers */
 
 .o-row--lg {
     padding: 48px 24px 24px;
+}
+
+/* color modifiers */
+
+.o-row--neutral-xxxx-light {
+    background-color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -246,7 +233,7 @@ a:focus {
 .o-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 56.4em; /* 56.4 * 20px = 1128px */
+    max-width: 71em; /* 71 * 18px = 1278px */
 }
 
 /*
@@ -256,51 +243,28 @@ a:focus {
 */
 
 .o-section {
+    /* overflow-x: hidden; */
+    position: relative;
     display: flow-root; /* New solution! Fixes margin collapsing */
 }
 
 .o-section + .o-section {
-    margin-top: 24px;
+    padding-top: 24px;
 }
 
 @media (min-width: 768px) {
     .o-section--lg + .o-section--lg,
     .o-section--xl + .o-section--xl {
-        margin-top: 48px;
+        padding-top: 48px;
     }
 }
 
 @media (min-width: 1200px) {
     .o-section--xl + .o-section--xl {
-        margin-top: 72px;
+        padding-top: 72px;
     }
 }
-@media (min-width: 768px) {
-    .c-nav {
-        font-size: 18px;
-        line-height: 24px;
-        display: block;
-        line-height: 50px;
-    }
-}
-@media (min-width: 992px) {
-    .c-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .c-nav__list {
-        display: flex;
-        margin-left: -16px;
-        margin-right: -16px;
-    }
-    .c-nav__link {
-        padding: 8px 16px;
-    }
-    .c-header__nav {
-        display: block;
-    }
-}
+
 /*
     Objects: Layout
     ---
@@ -310,10 +274,12 @@ a:focus {
 */
 
 .o-layout {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
 }
-
+    
     .o-layout__item {
         flex-basis: 100%;
     }
@@ -425,21 +391,25 @@ a:focus {
 .o-list {
     list-style: none;
     padding: 0;
-    
 }
 
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
 
-  /*
-      Component: Logo
-      ---
-      Website main logo
-  */
-  
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
+
+/*
+    Component: Logo
+    ---
+    Website main logo
+*/
+
 .c-logo {
     height: 32px;
+    display: flex;
 }
 
 .c-logo__symbol {
@@ -447,106 +417,263 @@ a:focus {
 }
 
 /*
-      Component: Nav
-      ---
-      Main navigation of the site
-  */
-  
-  .c-nav {
-    font-size: 18px;
-    line-height: 24px;
-    display: block;
+    Component: header
+    ---
+    Main header of the website
+*/
+
+.c-header__nav {
+    display: none;
 }
 
+@media (min-width: 992px) {
+    .c-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
+    .c-header__nav {
+        display: block;
+    }
+}
+
+/*
+    Component: footer
+    ---
+    Main footer of the website
+*/
+
+.c-footer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c-footer__logo {
+    width: 100%;
+}
+
+.c-footer__nav {
+    width: 50%;
+}
+
+@media (min-width: 768px) {
+    .c-footer {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .c-footer__logo {
+        display: flex;
+        justify-content: center;
+        padding: 0 12px;
+    }
+
+    .c-footer__nav {
+        width: auto;
+        padding: 0 16px;
+    }
+}
+
+@media (min-width: 992px) {
+    .c-footer {
+        justify-content: space-between;
+    }
+
+    .c-footer__nav {
+        padding: 0;
+    }
+
+    .c-footer__logo + .c-footer__nav {
+        order: -1;
+    }
+
+    .c-footer__logo {
+        width: auto;
+    }
+
+    /*
+        Bonus: real centering with CSS
+        Checkout: https://css-tricks.com/centering-css-complete-guide/
+    */
+
+    /* .c-footer__logo {
+        width: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .c-footer__logo .c-logo {
+        margin-bottom: 0;
+    } */
+}
+
+/*
+    Component: Nav
+    ---
+    Main navigation of the site
+*/
+
+.c-nav {
+    font-size: 13px;
+    line-height: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
 .c-nav__link {
     text-decoration: none;
-    font-weight: 200;
-    padding: 8px 32;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: 600;
+    display: block;
+    padding: 8px 0;
 }
 
 .c-nav__link,
 .c-nav__link:visited,
 .c-nav__link:active {
-    color: #202024;
+    color: #fff;
 }
 
 .c-nav__link:hover,
 .c-nav__link:focus {
-    text-shadow: 0px 0px 10px #DBEDFF;
+    color: #DBEDFF;
+    text-shadow: 0 0 8px #8EC7FF;
 }
 
-.c-nav--meta{
-    font-size: 16px;
+@media (min-width: 992px) {
+    .c-nav__list {
+        display: flex;
+        align-items: center;
+        /* margin-left: -16px;
+        margin-right: -16px; */
+    }
+
+    .c-nav__link {
+        padding: 12px 16px;
+    }
+
+    .c-nav__item--cta {
+        margin-left: 16px;
+    }
 }
 
+/*
+    Component: Lead
+    ---
+    Lead type treatments to style everything that differs from standard typography elements
+*/
 
-.c-nav__link--meta,
-.c-nav__link--meta:visited,
-.c-nav__link--meta:active {
-    color: white;
+.c-lead {
+    font-weight: 400;
 }
 
-.c-nav__link--meta:hover,
-.c-nav__link--meta:focus {
-    text-shadow: 0px 0px 10px #DBEDFF;
+.c-lead--lg {
+    font-size: 32px;
+    line-height: 40px;
 }
 
-.is-selected .c-nav__link,
-.c-nav__link:hover,
-.c-nav__link:focus{
-    text-shadow: 0px 0px 10px #DBEDFF;
+.c-lead--xl {
+    font-size: 41px;
+    line-height: 48px;
 }
 
-.c-link-cta { 
+/*
+    Component: figure
+    ---
+    Special type of figure and figcaption
+*/
+
+.c-figure {
     position: relative;
+}
+
+.c-figure__caption {
+    line-height: 15px;
+    margin-top: 8px;
+    padding-left: 6px;
+    padding-top: 1px;
+    border: 2px solid #0053FB;
+    border-width: 0 0 0 2px;
+    color: #474D59;
+}
+
+@media (min-width: 768px) {
+    .c-figure__caption--absolute {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: 8px;
+        text-align: right;
+        background-color: #fff;
+        padding: 16px;
+        max-width: 260px;
+        border-width: 0 4px 0 0;
+    }
+}
+
+/*
+    Component: Title icon
+    ---
+    Special type of title with icon
+*/
+
+.c-title-icon {
+    display: flex;
+    align-items: flex-start;
+}
+
+.c-title-icon__icon {
+    height: 70px;
+    margin-right: 20px;
+}
+
+@media (min-width: 768px) {
+    .c-title-icon__icon {
+        height: 84px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .c-title-icon__icon {
+        height: 112px;
+    }
+}
+
+/*
+    Component: CTA link
+    ---
+    Small cta link with custom animation
+*/
+
+.c-link-cta {
     display: inline-block;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color:white !important;
-    line-height: 16px;
-    font-weight: 400;
-    border:1px solid rgb(61, 133, 205);
-    padding: 20px 40px 20px 40px;
-    background-image: linear-gradient(to right ,#033AA7, #0053FB);
-    box-shadow: 0px 0px 3px rgb(103, 172, 240);
-  }
-
-
-
-
-/* .c-link-cta::after {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    width: 100%;
-    background-color: #7373F5;
-    transform: scaleX(.5);
-    transform-origin: left;
-    transition-property: transform background-color;
-    transition-duration: .175s;
-    transition-timing-function: ease-in;
-} */
-
-
-
-/* .c-link-cta--inverse {
-    position: relative;
-    display: inline-block;
-    text-decoration: none;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 24px;
-    font-weight: 400;
-    padding: 4px 0;
-    transition: color .175s ease-in;
-} */
+    font-weight: 600;
+    padding: 16px 32px;
+    transition-duration: .25s;
+    transition-timing-function: ease-in-out;
+    background: linear-gradient(to right, #033AA7 0%, #0053FB 51%, #033AA7 100%);
+    background-size: 200% auto;
+    box-shadow: inset 0 0 0 1px rgba(142,199,255,.2), 0 0 10px rgba(17,149,255,.30) ;
+}
+
+.c-link-cta,
+.c-link-cta:visited,
+.c-link-cta:active {
+    color: #DBEDFF;
+}
+
+.c-link-cta:hover {
+    color: #fff;
+    background-position: right center;
+    box-shadow: inset 0 0 0 1px rgba(142,199,255,.4), 0 0 10px rgba(17,149,255,.8) ;
+}
+
 /*------------------------------------*\
   #UTILITIES
 \*------------------------------------*/
@@ -557,7 +684,17 @@ a:focus {
     Utility classes to put specific colors onto elements
 */
 
+.u-color-primary-light {
+}
+
+.u-color-primary-base {
+}
+
+.u-color-primary-dark {
+}
+
 .u-color-secondary-base {
+    color: #8EC7FF;
 }
 
 /*
